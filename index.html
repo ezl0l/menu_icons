@@ -1,0 +1,201 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=0.4">
+		<title>Шоколадница</title>
+		<style>
+			body {
+				font-family: arial;
+				margin: 0;
+				padding: 30px 0;
+			}
+			
+			.main-page {
+				width: 25%;
+				margin: 0 auto;
+			}
+
+			.barcode {
+				margin-bottom: 30px;
+			}
+
+			.title {
+				display: block;
+				text-align: center;
+				font-weight: 700;
+				font-size: 16px;
+				margin-bottom: 20px;
+			}
+
+			.barcode-code {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+				align-items: center;
+				color: #000;
+				font-size: 25px;
+				font-weight: 700;
+				margin: 0 10px;
+			}
+
+			.barcode-content > img {
+				width: 100%;
+			}
+
+			.receipt {
+				margin-top: 50px;
+			}
+
+			.receipt > input {
+				width: 100%;
+				border: 1px solid #C0C0C0;
+				border-radius: 10px;
+				padding: 7px 12px;
+				font-size: 30px;
+				height: 40px;
+				text-align: center;
+			}
+
+			.receipt > input::placeholder {
+				color: #C0C0C0;
+			}
+			
+			.separator {
+				position: absolute;
+				left: 0;
+			    width: 100%;
+			    border-bottom: 1px solid #C0C0C0;
+			    color: #C0C0C0;
+			}
+
+			.separator::before {
+			    left: 0;
+			}
+
+			.separator::after {
+			    right: 0;
+			}
+
+			.separator__text {
+			    position: absolute;
+				font-size: 13px;
+			    top: 50%;
+			    left: 50%;
+			    transform: translate(-50%, -50%);
+			    background: #fff;
+			    padding: 0 50px;
+				margin: -1px 0 0 0;
+			}
+			
+			.container {
+				width: 100%;
+				margin: 0 auto;
+			}
+			
+			.bottom-navbar {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+				align-items: center;
+				background-color: #3f282a;
+				height: 96px;
+				width: 100%;
+			}
+			
+			.bottom-navbar > .wrapper {
+				display: inline-block;
+				width: 48px;
+				height: 48px;
+			}
+			
+			.bottom-navbar > .wrapper.selected {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: flex-start;
+			}
+			
+			.bottom-navbar > .wrapper.selected > img {
+				position: relative;
+				top: -16px;
+			}
+			
+			.bottom-navbar > .wrapper.selected > span {
+				color: #fff;
+				font-family: arial;
+				font-size: 20px;
+				white-space: nowrap;
+				text-align: center;
+				position: relative;
+				top: -10px;
+			}
+			
+		</style>
+		<script>
+			function requestFullScreen(element) {
+				// Supports most browsers and their versions.
+				var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+
+				if (requestMethod) { // Native full screen.
+					requestMethod.call(element);
+				} else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
+					var wscript = new ActiveXObject("WScript.Shell");
+					if (wscript !== null) {
+						wscript.SendKeys("{F11}");
+					}
+				}
+			}
+
+			var elem = document.body; // Make the body go full screen.
+			requestFullScreen(elem);
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="main-page">
+				<div class="barcode">
+					<span class="title">Покажите штрихкод кассиру</span>
+					<div class="barcode-content">
+						<span class="barcode-code">
+							<span>8</span>
+							<span>1</span>
+							<span>8</span>
+							<span> </span>
+							<span> </span>
+							<span>3</span>
+							<span>1</span>
+							<span>5</span>
+						</span>
+						<img src="barcode.svg">
+					</div>
+				</div>
+				<div class="separator">
+					<span class="separator__text">или</span>
+				</div>
+				<div class="receipt">
+					<span class="title">Введите цифры с чека</span>
+					<input placeholder="0000 # 0000">
+				</div>
+			</div>
+			<div class="bottom-navbar">
+				<div class="wrapper">
+					<img src="places.svg">
+				</div>
+				<div class="wrapper selected">
+					<img src="bookmark.svg">
+					<span>Ввод кода</span>
+				</div>
+				<div class="wrapper">
+					<img src="star.svg">
+				</div>
+				<div class="wrapper">
+					<img src="profile.svg">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
